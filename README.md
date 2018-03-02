@@ -42,13 +42,18 @@ sudo chmod +x /usr/local/bin/json2raw
 
 ## Usage
 > json2raw [files]
+
 **Example:** `json2raw file0.json file1.json fileN.json`
 
 **options:**
 > -f string ꟷ Format template (used python3 [format](https://pyformat.info/) function)
+
 **default:** {name}={value}
+
 **available keys:** **name** - combined structure names (delimiter: _ ), **value** - value
+
 **Example:** `json2raw -f '{name}="{value}"' file0.json file1.json fileN.json`
+
 
 ## Examples
 Converting to **ini** like format (default format: *key=value*)
