@@ -1,0 +1,30 @@
+sudo: required
+
+language: python
+
+python: 3.6
+
+cache:
+  directories:
+    - /home/travis/dist/
+
+jobs:
+  include:
+    - stage: Test
+      script:
+        - sudo apt-get update -qq
+        - sudo apt-get install pylint
+        - pylint src/json2raw.py
+    - stage: Build
+      script: 
+        - sudo pip install --no-cache-dir --upgrade pyinstaller
+        - pyinstaller --onedir --onefile --clean src/json2raw.py
+    - stage: Release
+      script: echo "Deploying to GitHub releases ..."
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: dist/json2raw
+        skip_cleanup: true
+        on:
+          tags: true
