@@ -12,7 +12,7 @@ jobs:
   include:
     - stage: Test
       script:
-        - sudo pip3 install pylint
+        - sudo pip3.6 install pylint
         - pylint src/json2raw.py
     - stage: Build
       script: 
