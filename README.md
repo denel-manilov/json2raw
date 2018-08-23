@@ -1,4 +1,8 @@
 # json2raw
+
+[![Build Status](https://travis-ci.com/denel-manilov/json2raw.svg?branch=master)](https://travis-ci.com/denel-manilov/json2raw)
+[![CodeFactor](https://www.codefactor.io/repository/github/denel-manilov/json2raw/badge)](https://www.codefactor.io/repository/github/denel-manilov/json2raw)
+
 ![json2raw](logo.png?raw=true "json2raw Logo")
 
 json2raw is a simple utility that transforms the JSON structure into a key / value list.
