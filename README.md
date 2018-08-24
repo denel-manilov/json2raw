@@ -1,7 +1,7 @@
 # json2raw
 
 [![Build Status](https://travis-ci.com/denel-manilov/json2raw.svg?branch=master)](https://travis-ci.com/denel-manilov/json2raw)
-[![CodeFactor](https://www.codefactor.io/repository/github/denel-manilov/json2raw/badge)](https://www.codefactor.io/repository/github/denel-manilov/json2raw)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6dd5248b6f44d06bdbeb809481239ba)](https://www.codacy.com/project/denel.manilov/json2raw/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=denel-manilov/json2raw&amp;utm_campaign=Badge_Grade_Dashboard)
 
 ![json2raw](logo.png?raw=true "json2raw Logo")
 
