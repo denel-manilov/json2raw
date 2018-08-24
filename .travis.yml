@@ -8,12 +8,14 @@ cache:
   directories:
     - /home/travis/dist/
 
+addons:
+  apt:
+    packages:
+    - python3-pip
 jobs:
   include:
     - stage: Test
       script:
-        - sudo apt-get update -qq
-        - sudo apt-get install -y -q python3-pip
         - pip3 install pylint
         - pylint src/json2raw.py
     - stage: Build
