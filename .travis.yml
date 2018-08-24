@@ -1,12 +1,10 @@
-sudo: required
-
 language: python
 
 python: 3.6
 
 cache:
   directories:
-    - /home/travis/dist/
+    - /home/travis/build/denel-manilov/json2raw/dist
 
 addons:
   apt:
@@ -20,7 +18,7 @@ jobs:
         - pylint src/json2raw.py
     - stage: Build
       script: 
-        - sudo pip install pyinstaller
+        - pip3 install pyinstaller
         - pyinstaller --onedir --onefile --clean src/json2raw.py
     - stage: Release
       script: echo "Deploying to GitHub releases ..."
