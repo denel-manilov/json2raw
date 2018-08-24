@@ -6,7 +6,7 @@ copy:
 	docker cp dev-json2raw-copy:/usr/src/app/dist/json2raw ./bin/json2raw
 	docker stop dev-json2raw-copy
 test:
-	docker run --rm -v `pwd`/examples/json:/examples dev/json2raw /bin/json2raw /examples/myenv.json
+	docker run --rm -v `pwd`/examples/json:/examples dev/json2raw /bin/json2raw /examples/helloworldenv.json
 clean:
 	docker rmi -f dev/json2raw
 	rm -f ./bin/*
