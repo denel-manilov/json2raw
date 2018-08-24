@@ -1,70 +1,58 @@
-from sys import argv, exit, stderr
+#!/usr/bin/env python3
+
+""" json2raw is a simple utility that transforms the JSON structure into a key / value list. """
 import json
+import sys
 
 
 def eprint(*args, **kwargs):
-    print(*args, file=stderr, **kwargs)
-    exit(1)
-    pass
-
+    """ Print to stderr """
+    print(*args, file=sys.stderr, **kwargs)
+    sys.exit(1)
 
 def parse(data, template, prefix=''):
-    if type(data) == dict:
+    """ Parse json """
+    if isinstance(data, dict):
         data = data.items()
-    elif type(data) == list:
+    elif isinstance(data, list):
         data = enumerate(data)
     else:
         return data
-        pass
     for name, value in data:
         name = (str(prefix) + '_' + str(name)).strip('_')
-        if type(value) == dict or type(value) == list:
+        if isinstance(value, (dict, list)):
             parse(value, template=template, prefix=name)
         else:
             try:
                 print(template.format(**{"name": name, "value": value}))
-            except Exception as e:
-                eprint('Format Exception:\n', e, '\nAvailable keys: name, value')
-                pass
-            pass
-        pass
-    pass
+            except KeyError as tpl_e:
+                eprint('Format Exception:\n', tpl_e, '\nAvailable keys: name, value')
+    return None
 
 
 def main():
+    """ Main """
     template = '{name}={value}'
-    if not argv[1:]:
+    if not sys.argv[1:]:
         eprint('Usage:\n json2raw [-f string] file0.json file1.json')
-        pass
-    files = argv[1:]
-    if argv[1] == '-f':
-        if not argv[2:]:
+    files = sys.argv[1:]
+    if sys.argv[1] == '-f':
+        if not sys.argv[2:]:
             eprint('-f string\n Format output', 'default:', template)
-        template = argv[2]
-        files = argv[3:]
-        pass
+        template = sys.argv[2]
+        files = sys.argv[3:]
     if not files:
         eprint('Set files')
-        pass
     for file in files:
         try:
             content = open(file)
-        except FileNotFoundError as e:
-            eprint('Cannot load file:', file, "\n", e)
-        except Exception as e:
-            eprint(e)
-            pass
+        except FileNotFoundError as fnf_e:
+            eprint('Cannot load file:', file, "\n", fnf_e)
         try:
             data = json.load(content)
-        except json.decoder.JSONDecodeError as e:
-            eprint('Cannot parse file:', file, "\n", e)
-        except Exception as e:
-            eprint(e)
-            pass
+        except json.decoder.JSONDecodeError as jd_e:
+            eprint('Cannot parse file:', file, "\n", jd_e)
         parse(data=data, template=template)
-    pass
-
 
 if __name__ == '__main__':
     main()
-    pass
